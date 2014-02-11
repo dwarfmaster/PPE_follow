@@ -10,16 +10,12 @@ Follower::~Follower()
 
 void Follower::process(const cv::Mat& img)
 {
-    Mat hsv;
-    cvtColor(img, hsv, CV_BGR2HSV);
-
     Mat binary(img.size(), CV_8UC1);
     /* Creating the binary picture. */
     for(int i = 0; i < img.rows; ++i) {
         for(int j = 0; j < img.cols; ++j) {
-            auto vec = hsv.at<Vec<unsigned char,3>>(i,j);
-            if(vec[1] >= 180 && vec[2] >= 100
-                    && (vec[0] < 10 || vec[0] > 170))
+            auto vec = img.at<Vec<unsigned char,3>>(i,j);
+            if(vec[0] < 50 && vec[1] < 50 && vec[2] > 200)
                 binary.at<unsigned char>(i,j) = 255;
             else
                 binary.at<unsigned char>(i,j) = 0;
