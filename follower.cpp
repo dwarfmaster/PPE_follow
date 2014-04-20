@@ -27,12 +27,12 @@ void Follower::process(const cv::Mat& img)
         for(int j = 0; j < img.cols; ++j) {
             auto vec = hsv.at<Vec<unsigned char,3>>(i,j);
 
-            if(vec[0] > getTrackbarPos("min hue", "Binary")
-                    && vec[0] < getTrackbarPos("max hue", "Binary")
-                    && vec[1] > getTrackbarPos("min saturation", "Binary")
-                    && vec[1] < getTrackbarPos("max saturation", "Binary")
-                    && vec[2] > getTrackbarPos("min value", "Binary")
-                    && vec[2] < getTrackbarPos("max value", "Binary")
+            if(vec[0] >= getTrackbarPos("min hue", "Binary")
+                    && vec[0] <= getTrackbarPos("max hue", "Binary")
+                    && vec[1] >= getTrackbarPos("min saturation", "Binary")
+                    && vec[1] <= getTrackbarPos("max saturation", "Binary")
+                    && vec[2] >= getTrackbarPos("min value", "Binary")
+                    && vec[2] <= getTrackbarPos("max value", "Binary")
                     )
                 binary.at<unsigned char>(i,j) = 255;
             else
