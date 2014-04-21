@@ -10,7 +10,7 @@ class Follower
         Follower();
         ~Follower();
 
-        void process(const cv::Mat& img);
+        void process(const cv::Mat& img, bool save=false);
         const char* status() const;
         enum Status{Left, Right, Center, Unknown};
         Status pos() const;

@@ -16,7 +16,7 @@ Follower::Follower()
 Follower::~Follower()
 {}
 
-void Follower::process(const cv::Mat& img)
+void Follower::process(const cv::Mat& img, bool save)
 {
     Mat hsv;
     cvtColor(img, hsv, CV_BGR2HSV);
@@ -40,6 +40,15 @@ void Follower::process(const cv::Mat& img)
         }
     }
     imshow("Binary", binary);
+
+    static int nb = 0;
+    if(save) {
+        std::ostringstream oss;
+        oss << "pict" << nb << ".png";
+        imwrite("bin/" + oss.str(), binary);
+        imwrite("img/" + oss.str(), img);
+        ++nb;
+    }
 }
 
 const char* Follower::status() const

@@ -10,15 +10,20 @@ int main()
     cv::VideoCapture cam(1);
 
     bool cont = true;
+    bool save = false;
     cv::Mat img;
     while(cont) {
         cam.grab();
         cam.retrieve(img);
         cv::imshow("Stream", img);
-        f.process(img);
+        f.process(img, save);
 
-        if((char)cvWaitKey(1) == ' ')
+        save = false;
+        char c = (char)cvWaitKey(1);
+        if(c == ' ')
             cont = false;
+        else if(c == 'a')
+            save = true;
     }
 
     return 0;
