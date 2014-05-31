@@ -20,6 +20,15 @@ void Follower::process(const cv::Mat& img, bool save)
 {
     Mat hsv;
     cvtColor(img, hsv, CV_BGR2HSV);
+    /* Equalizing S and V. */
+    /*
+    std::vector<Mat> channels;
+    split(hsv, channels);
+    equalizeHist(channels[0], channels[0]);
+    equalizeHist(channels[1], channels[1]);
+    equalizeHist(channels[2], channels[2]);
+    merge(channels, hsv);
+    */
 
     Mat binary(img.size(), CV_8UC1);
     /* Creating the binary picture. */
