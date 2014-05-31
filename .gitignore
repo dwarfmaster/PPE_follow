@@ -1,0 +1,11 @@
+*.o
+*.prog
+
+list
+picts
+ground
+tmp*
+bin
+img
+list_test
+
